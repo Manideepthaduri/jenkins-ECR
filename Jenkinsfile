@@ -1,7 +1,7 @@
 pipeline {
     agent any
      environment {
-        registry = "961565152773.dkr.ecr.us-east-1.amazonaws.com/mani"
+        registry = "961565152773.dkr.ecr.us-west-1.amazonaws.com/mani"
     }
    
     stages {
@@ -22,7 +22,7 @@ pipeline {
              steps{  
                   script {
                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws_cred', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-    sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 961565152773.dkr.ecr.us-west-1.amazonaws.com/mani'
+    sh 'aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 961565152773.dkr.ecr.us-west-1.amazonaws.com/mani'
      sh 'docker push 961565152773.dkr.ecr.us-west-1.amazonaws.com/mani'
 }
 
