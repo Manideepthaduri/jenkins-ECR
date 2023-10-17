@@ -10,6 +10,11 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Manideepthaduri/jenkins-ECR.git'
             }
         }
+          stage('Build the code') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }   
            stage('Building image') {
              steps{
                   script {
